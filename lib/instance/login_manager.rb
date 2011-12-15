@@ -397,7 +397,7 @@ module RightScale
     # === Return
     # exist_status(Boolean):: true if user exists; otherwise false
     def user_exists?(name)
-      Etc.getpwnam(name).name == name
+      Etc.getpwnam(name).name == name if Etc.getpwnam(name)
     rescue ArgumentError
       false
     end
