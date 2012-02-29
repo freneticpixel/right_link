@@ -3,7 +3,7 @@
 = DESCRIPTION
 
 == Synopsis
-
+==
 RightLink automates servers configuration and monitoring. It uses RabbitMQ as
 message bus and relies on Chef[2] for configuring. RightLink uses RightPopen[3]
 to monitor the stdout and stderr streams of scripted processes. Servers running
