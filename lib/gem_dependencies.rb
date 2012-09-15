@@ -26,23 +26,10 @@
 
 require 'rubygems'
 
-# N.B. we can't use File#normalize_path yet because gems haven't been activated - Windows safety!
-basedir = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-Dir.chdir(basedir) do
-  if File.exist?('Gemfile')
-    # Development mode: activate Bundler gem, then let it setup our RubyGems
-    # environment for us -- but don't have it auto-require any gem files; we
-    # will do that ourselves.
-    require 'bundler'
-    Bundler.setup
-  else
-    # Release mode: use 'bare' RubyGems; assume that all gems were installed
-    # as system gems. Nothing to do here...
-  end
-end
-
-gem 'right_link'
-
+# Sanity check to make sure all required cross-platform gems are installed. Note
+# that this is not a sufficiently thorough check to make sure RightLink will run,
+# and is not a  substitute for annotating the right_link gemspec with an accurate
+# set of dependencies and dependency-ranges!
 gem 'eventmachine'
 
 gem 'right_support'
@@ -55,8 +42,9 @@ gem 'right_scraper'
 gem 'ohai'
 gem 'chef'
 
-# Note - can't use RightScale::Platform because gem sources aren't required
-if RUBY_PLATFORM =~ /mswin|mingw/ 
+# Sanity check to make sure all required Windows gems are installed.
+# Note - can't use RightScale::Platform because gem sources aren't required.
+if RUBY_PLATFORM =~ /mswin|mingw/
   gem 'win32-api'
   gem 'windows-api'
   gem 'windows-pr'
@@ -73,10 +61,16 @@ else
 end
 
 # Make sure gem bin directories appear at the end of the path so our wrapper
-# scripts get top billing.
+# scripts (e.g. those installed to /usr/bin) get top billing.
 version = RUBY_VERSION.split('.')[0..1].join('.')
 subdir = /gems[\\\/]#{version}1.8[\\\/]bin/
 paths = ENV['PATH'].split(/[:;]/)
 gem_bin = paths.select { |p| p =~ subdir }
 paths.delete_if { |p| p =~ subdir }
 ENV['PATH'] = (paths + gem_bin).join(sep)
+
+# Make sure RightLink is not only activated, but that its top-level module is loaded.
+# The various RightLink CLI entry points are responsible for loading dependent-gem
+# modules as well as the RightLink modules they need. (We can't load everything up front
+# because it would take FAR too long.)
+require 'right_link'

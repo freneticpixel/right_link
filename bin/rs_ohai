@@ -20,7 +20,6 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'gem_dependencies'))
-require 'right_link'
 
 $:.push(File.join(File.dirname(__FILE__), '..', 'scripts'))
 require 'ohai_runner'

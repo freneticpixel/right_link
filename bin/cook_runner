@@ -6,7 +6,6 @@
 #
 
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'gem_dependencies'))
-require 'right_link'
 
 require 'right_agent'
 require 'eventmachine'

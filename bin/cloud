@@ -20,7 +20,6 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'gem_dependencies'))
-require 'right_link'
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'scripts', 'cloud_controller'))
 
 RightScale::CloudController.run

@@ -22,7 +22,6 @@
 # See scripts/agent_checker.rb for additional information.
 
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'gem_dependencies'))
-require 'right_link'
 
 $:.push(File.join(File.dirname(__FILE__), '..', 'scripts'))
 require 'agent_checker'
