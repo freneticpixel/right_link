@@ -68,9 +68,3 @@ paths = ENV['PATH'].split(/[:;]/)
 gem_bin = paths.select { |p| p =~ subdir }
 paths.delete_if { |p| p =~ subdir }
 ENV['PATH'] = (paths + gem_bin).join(sep)
-
-# Make sure RightLink is not only activated, but that its top-level module is loaded.
-# The various RightLink CLI entry points are responsible for loading dependent-gem
-# modules as well as the RightLink modules they need. (We can't load everything up front
-# because it would take FAR too long.)
-require 'right_link'

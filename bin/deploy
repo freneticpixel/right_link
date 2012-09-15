@@ -84,7 +84,7 @@ module RightScale
         host = "#{url.host}#{host}"
       end
 
-      root_dirs = RightLink.default_root_dirs.map { |x| ['-r', x] }.flatten
+      root_dirs = AgentConfig.right_link_root_dirs.map { |x| ['-r', x] }.flatten
 
       cmd_opts = [ 'instance' ] +
                  root_dirs +
