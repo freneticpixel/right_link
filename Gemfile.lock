@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rightscale/right_agent.git
-  revision: 114cff0ab873c394882e761bdc7840137e62fa52
+  revision: 5045269650c31b534e9c8589643817d17d641423
   branch: master
   specs:
     right_agent (0.12.4)
@@ -23,10 +23,10 @@ GIT
 
 GIT
   remote: git://github.com/rightscale/right_support.git
-  revision: 23d9e198f84c3d5d573a0727e1a28a0130e75572
+  revision: 262564edd546ba3913f8cd7139045ff44967aef4
   branch: master
   specs:
-    right_support (2.3.2)
+    right_support (2.4.0)
 
 PATH
   remote: .
