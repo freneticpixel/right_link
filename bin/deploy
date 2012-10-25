@@ -130,4 +130,8 @@ end
 # The $0 argument is -e in windows because of how we wrap the call to get live
 # console output. we don't need to worry about symlinks in Windows, so always
 # run the deployer on that platform
-RightScale::AgentDeployerRunner.run
+begin
+  RightScale::AgentDeployerRunner.run
+rescue Exception => e
+  Log.info(e.message)
+end
